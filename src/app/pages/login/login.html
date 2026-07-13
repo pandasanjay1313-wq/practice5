@@ -1,0 +1,47 @@
+
+<h2>Login</h2>
+
+<form [formGroup]="loginForm" >
+
+  <div>
+    <label>Username</label><br>
+    <input
+      type="text"
+      formControlName="username">
+
+     @if (loginForm.controls.username.errors && loginForm.controls.username.dirty) {
+
+    @if (loginForm.controls.username.errors['required']) {
+      <p class="text-danger">Username is required</p>
+    }
+
+  }
+  </div>
+
+  <br>
+
+  <div>
+    <label>Password</label><br>
+    <input
+      type="password"
+      formControlName="password">
+
+    @if (loginForm.controls.password.errors && loginForm.controls.password.dirty) {
+
+    @if (loginForm.controls.password.errors['required']) {
+      <p class="text-danger">Password is required</p>
+    }
+
+  }
+  </div>
+
+  <br>
+
+  <button class="btn btn-primary" type="submit" (click)="login()">Login</button>
+
+</form>
+@if(showRegister){
+    <app-register></app-register>
+}
+<p>{{ submitted }}</p>
+<p>{{ loginForm.invalid }}</p>

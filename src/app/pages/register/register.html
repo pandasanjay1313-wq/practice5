@@ -1,0 +1,99 @@
+<h2>Register Form</h2>
+
+<form [formGroup]="registerForm">
+    <div>
+        <label>FirstName:</label>
+        <input type="text" formControlName="firstName">
+
+        @if(registerForm.controls.firstName.errors && submitted){
+            <p class="text-danger">First Name is Required</p>
+        }
+    </div>
+    <br>
+
+    <div>
+        <label>LastName:</label>
+        <input type="text" formControlName="LastName">
+
+        @if(registerForm.controls.lastName.errors && submitted){
+            <p class="text-danger">Last Name is Required</p>
+        }
+    </div>
+    <br>
+
+    <div>
+    <label>Email</label><br>
+    <input type="email" formControlName="email">
+
+    @if(registerForm.controls.email.errors && submitted){
+      <p class="text-danger">Email is required</p>
+    }
+  </div>
+  <br>
+
+  <div>
+    <label>Mobile Number</label><br>
+    <input type="text" formControlName="mobile">
+
+    @if(registerForm.controls.mobile.errors && submitted){
+      <p class="text-danger">Mobile Number is required</p>
+    }
+    <!-- alt mobile -->
+    <div formArrayName="altMobile">
+  <label>Alt Mobile Number</label>
+
+  <button type="button" (click)="addAltMobile()">+Add</button>
+
+  @for(number of altMobile.controls; track $index){
+    <br><br>
+    <input type="text"[formControlName]="$index" placeholder="Alternate number">
+        @if(number.errors && submitted){
+           @if(number.errors['required']){
+        <p class="text-danger">Alt Mobile Number is required</p>
+      }
+       @if(number.errors['pattern']){
+        <p class="text-danger">Enter a valid Mobile Number</p>
+       }
+     }
+  }
+
+</div>
+  </div>
+  <br>
+
+   <fieldset formGroupName="address">
+
+    <legend>Address</legend>
+
+    <div>
+      <label>State</label><br>
+      <input type="text" formControlName="state">
+
+      @if(registerForm.controls.address.controls.state.errors && submitted){
+        <p class="text-danger">State is required</p>
+      }
+    </div>
+    <br>
+
+    <div>
+      <label>City</label><br>
+      <input type="text" formControlName="city">
+
+      @if(registerForm.controls.address.controls.city.errors && submitted){
+        <p class="text-danger">City is required</p>
+      }
+    </div>
+    <br>
+
+    <div>
+      <label>Pin Code</label><br>
+      <input type="number" formControlName="pinCode">
+
+      @if(registerForm.controls.address.controls.pinCode.errors && submitted){
+        <p class="text-danger">Pin Code is required</p>
+      }
+    </div>
+  </fieldset>
+  <br>
+  <button type="submit" (click)="registerForm">Submit</button>
+</form>
