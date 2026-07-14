@@ -13,7 +13,7 @@ export class Register {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required,Validators.email]),
-    mobile: new FormControl('', Validators.required),
+    mobile: new FormControl('', [Validators.required, Validators.pattern('^[6-9][0-9]{9}$')]),
         altMobile: new FormArray([]),
   
     address: new FormGroup({

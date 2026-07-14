@@ -10,7 +10,7 @@ import { Register } from '../register/register';
 })
 export class Login {
   submitted = false;
-  showRegister = false;
+  
 
   users= [
     {
@@ -23,6 +23,7 @@ export class Login {
     }
   ];
 
+  showRegister = false;
 
   loginForm = new FormGroup({
     username: new FormControl('',Validators.required),
@@ -35,21 +36,38 @@ export class Login {
     if (this.loginForm.invalid){
       return;
     }
-    const username = this.loginForm.value.username;
-    const password = this.loginForm.value.password;
 
-    const user = this.users.find(
-      x => x.username === username && x.password === password
-    );
+    let userfound =  false;
+    for(const user of this.users){
+      if(user.username == this.loginForm.value.username){
+        userfound = true;
 
-    if(user){
-      alert('Login Successfully')
-    }
-    else{
-      this.showRegister = true;
-    }
+        if(user.password == this.loginForm.value.password){
+          alert('Login Successfully');
+        }
+        else{
+          alert('Invalid Password');
+        }
+        break;
+      }
 
   }
-
+  if(!userfound){
+    this.showRegister = true;
+  }
   
 }
+}
+// const username = this.loginForm.value.username;
+//     const password = this.loginForm.value.password;
+
+//     const user = this.users.find(
+//       user => user.username === username && user.password === password
+//     );
+
+//     if(user){
+//       alert('Login Successfully')
+//     }
+//     else{
+//       this.showRegister = true;
+//     }

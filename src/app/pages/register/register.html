@@ -67,7 +67,7 @@
 
     <div>
       <label>State</label><br>
-      <input type="text" formControlName="state">
+      <input type="text" formControlName="state" placeholder="Enter State">
 
       @if(registerForm.controls.address.controls.state.errors && submitted){
         <p class="text-danger">State is required</p>
@@ -77,7 +77,7 @@
 
     <div>
       <label>City</label><br>
-      <input type="text" formControlName="city">
+      <input type="text" formControlName="city" placeholder="Enter City">
 
       @if(registerForm.controls.address.controls.city.errors && submitted){
         <p class="text-danger">City is required</p>
@@ -87,7 +87,7 @@
 
     <div>
       <label>Pin Code</label><br>
-      <input type="number" formControlName="pinCode">
+      <input type="number" formControlName="pinCode" placeholder="Enter Pin Code">
 
       @if(registerForm.controls.address.controls.pinCode.errors && submitted){
         <p class="text-danger">Pin Code is required</p>
@@ -95,5 +95,5 @@
     </div>
   </fieldset>
   <br>
-  <button type="submit" (click)="registerForm">Submit</button>
+  <button type="submit"  (click)="register()">Submit</button>
 </form>
